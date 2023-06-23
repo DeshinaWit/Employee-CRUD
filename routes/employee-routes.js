@@ -20,32 +20,15 @@ router.post("/addemployee", async (req, res) => {
   }
 });
 
-// router.post('/addemployee', async (req, res) => {
-//   const employee = new Employee({
-//     firstName: req.body.firstName,
-//     lastName: req.body.lastName,
-//     email: req.body.email,
-//     phoneNumber: req.body.phoneNumber,
-//     gender: req.body.gender
-// })  
-//   try {
-//     const employeeToAdd = employee.save();
-//     res.status(200).json(employeeToAdd);
-//   } catch (error) {
-//     res.status(400).json({ error: error.message });
-//   }
-// });
-
 // Read all employees
-const getEmployees = async (req, res) => {
+router.get('/getemployees', async (req, res) => {
   try {
     const employees = await Employee.find();
     res.json(employees);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
-
+});
 
 
 // Read a specific employee by ID
@@ -91,6 +74,4 @@ router.delete('/employee/:empId', async (req, res) => {
   }
 });
 
-const EmployeeRoutes = router.get('/getemployees',getEmployees);
-
-exports.EmployeeRoutes= EmployeeRoutes;
+module.exports = router;
